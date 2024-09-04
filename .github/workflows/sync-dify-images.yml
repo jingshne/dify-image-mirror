@@ -94,3 +94,12 @@ jobs:
 
       - name: Push nginx image to Aliyun Registry
         run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/nginx:latest
+
+      - name: Pull kotaemon image from Docker Hub
+        run: docker pull taprosoft/kotaemon:v1.0
+
+      - name: Tag kotaemon image for ACR
+        run: docker tag kotaemon:v1.0 ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/kotaemon:v1.0
+
+      - name: Push kotaemon image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/kotaemon:v1.0
