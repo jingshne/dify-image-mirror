@@ -103,3 +103,12 @@ jobs:
 
       - name: Push kotaemon image to Aliyun Registry
         run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/kotaemon:v1.0
+
+      - name: Pull certbot image from Docker Hub
+        run: docker pull certbot/certbot
+
+      - name: Tag cerbot image for ACR
+        run: docker tag certbot/certbot ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/certbot
+
+      - name: Push nginx image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/certbot
