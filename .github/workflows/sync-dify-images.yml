@@ -110,5 +110,14 @@ jobs:
       - name: Tag cerbot image for ACR
         run: docker tag certbot/certbot ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/certbot
 
-      - name: Push nginx image to Aliyun Registry
+      - name: Push cerbot image to Aliyun Registry
         run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/certbot
+
+      - name: Pull node image from Docker Hub
+        run: docker pull node:20.11-alpine3.19
+
+      - name: Tag node image for ACR
+        run: docker tag node:20.11-alpine3.19 ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/node:20.11-alpine3.19
+
+      - name: Push node image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/node:20.11-alpine3.19
