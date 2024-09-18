@@ -121,3 +121,12 @@ jobs:
 
       - name: Push node image to Aliyun Registry
         run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/node:20.11-alpine3.19
+
+      - name: Pull n8n image from Docker Hub
+        run: docker pull docker.n8n.io/n8nio/n8n:latest
+
+      - name: Tag n8n image for ACR
+        run: docker tag docker.n8n.io/n8nio/n8n:latest ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/n8n:lastest
+
+      - name: Push n8n image to Aliyun Registry
+        run: docker push ${{ env.ACR_REGISTRY }}/${{ secrets.ACR_NAMESPACE }}/n8n:latest
